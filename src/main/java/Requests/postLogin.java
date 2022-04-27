@@ -2,15 +2,14 @@ package Requests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-
-import java.io.File;
+import org.apache.http.HttpStatus;
 
 import static io.restassured.RestAssured.given;
 
 
 public class postLogin {
     static String url = "https://resume-filter-backend-urtjok3rza-wl.a.run.app/";
-    public static Response login(File login, String endpoint){
+    public static Response login(String login, String endpoint){
         Response response =
                 given()
                         .baseUri(url)
@@ -19,9 +18,9 @@ public class postLogin {
                         .body(login)
                         .post(endpoint)
                         .then()
+                        .statusCode(HttpStatus.SC_CREATED)
                         .extract()
                         .response();
-
         return response;
     }
 }

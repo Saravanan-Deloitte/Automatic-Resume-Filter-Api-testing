@@ -2,6 +2,7 @@ package Requests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 
 import java.io.File;
 
@@ -13,13 +14,14 @@ public class getScore {
     public static Response login(String endpoint){
         Response response =
                 given()
-                        .baseUri(url)
-                        .contentType(ContentType.JSON)
-                        .when()
-                        .get(endpoint)
-                        .then()
-                        .extract()
-                        .response();
+                    .baseUri(url)
+                    .contentType(ContentType.JSON)
+                .when()
+                    .get(endpoint)
+                .then()
+                    .statusCode(HttpStatus.SC_OK)
+                    .extract()
+                    .response();
 
         return response;
     }
