@@ -14,7 +14,7 @@ public class GetAllRecruitmentsTest {
         Response response = getScore.login(end);
         Assert.assertEquals(response.statusCode(),200);
         JsonPath jspath = response.jsonPath();
-        jspath.prettyPrint();
+        //jspath.prettyPrint();
     }
 
 }
