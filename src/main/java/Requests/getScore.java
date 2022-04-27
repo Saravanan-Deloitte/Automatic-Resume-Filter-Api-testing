@@ -19,7 +19,7 @@ public class getScore {
                 .when()
                     .get(endpoint)
                 .then().log().body()
-                    //.statusCode(HttpStatus.SC_OK)
+//                    .statusCode(HttpStatus.SC_OK)
                     .extract()
                     .response();
 
