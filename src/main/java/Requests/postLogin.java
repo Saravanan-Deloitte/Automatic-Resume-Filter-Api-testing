@@ -24,6 +24,7 @@ public class postLogin {
     }
 
     public static Response postParam(String login, String endpoint,String id,int param){
+
         Response response =
                 given()
                         .baseUri(url)

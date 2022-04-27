@@ -7,6 +7,7 @@ import static io.restassured.RestAssured.given;
 
 
 public class getScore {
+
     static String url = "https://resume-filter-backend-urtjok3rza-wl.a.run.app/";
     public static Response login(String endpoint){
         Response response =
