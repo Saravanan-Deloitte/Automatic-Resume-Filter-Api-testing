@@ -2,9 +2,6 @@ package Requests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
-
-import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
@@ -19,7 +16,6 @@ public class getScore {
                 .when()
                     .get(endpoint)
                 .then()
-                    .statusCode(HttpStatus.SC_OK)
                     .extract()
                     .response();
 
