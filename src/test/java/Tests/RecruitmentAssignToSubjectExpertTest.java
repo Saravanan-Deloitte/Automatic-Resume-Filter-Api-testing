@@ -3,18 +3,17 @@ package Tests;
 import Requests.getScore;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GetAllRecruitmentsTest {
+public class RecruitmentAssignToSubjectExpertTest {
 
     @Test
-    public void getRecruitments(){
-        String end = "/resume/getRecruitment";
+    public void RecruitmentAssignToSubjectExpert(){
+        String end = "/resume/addQuiz?exp_id=7";
         Response response = getScore.login(end);
-        Assert.assertEquals(response.statusCode(),200);
         JsonPath jspath = response.jsonPath();
         //jspath.prettyPrint();
     }
 
 }
+

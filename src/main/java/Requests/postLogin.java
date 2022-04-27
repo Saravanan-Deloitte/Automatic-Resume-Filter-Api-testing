@@ -2,7 +2,6 @@ package Requests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
 
 import static io.restassured.RestAssured.given;
 
@@ -17,8 +16,23 @@ public class postLogin {
                         .when()
                         .body(login)
                         .post(endpoint)
-                        .then()
-                        .statusCode(HttpStatus.SC_CREATED)
+                        .then().log().body()
+                        .extract()
+                        .response();
+        return response;
+    }
+
+    public static Response postParam(String login, String endpoint,String id,int param){
+
+        Response response =
+                given()
+                        .baseUri(url)
+                        .contentType(ContentType.JSON)
+                        .queryParam(id,param)
+                        .when()
+                        .body(login)
+                        .post(endpoint)
+                        .then().log().body()
                         .extract()
                         .response();
         return response;
