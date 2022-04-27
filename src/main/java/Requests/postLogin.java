@@ -17,8 +17,8 @@ public class postLogin {
                         .when()
                         .body(login)
                         .post(endpoint)
-                        .then()
-                        .statusCode(HttpStatus.SC_CREATED)
+                        .then().log().body()
+                        //.statusCode(HttpStatus.SC_CREATED)
                         .extract()
                         .response();
         return response;
