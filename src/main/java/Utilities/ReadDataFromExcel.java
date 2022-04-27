@@ -15,7 +15,7 @@ public class ReadDataFromExcel {
 
         String excelFilePath = "C:\\Users\\karthikck\\Desktop\\Api testing\\src\\main\\resources\\apiData.xlsx";
 
-        String excelFilePath = "src/main/resources/apiData.xlsx";
+        excelFilePath = "src/main/resources/apiData.xlsx";
 
         FileInputStream fis = new FileInputStream(excelFilePath);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
