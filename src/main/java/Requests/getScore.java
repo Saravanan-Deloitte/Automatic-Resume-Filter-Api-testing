@@ -18,8 +18,8 @@ public class getScore {
                     .contentType(ContentType.JSON)
                 .when()
                     .get(endpoint)
-                .then()
-                    .statusCode(HttpStatus.SC_OK)
+                .then().log().body()
+                    //.statusCode(HttpStatus.SC_OK)
                     .extract()
                     .response();
 
