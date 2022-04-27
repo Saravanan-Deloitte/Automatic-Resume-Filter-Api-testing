@@ -26,12 +26,6 @@ public class postCreateRecruitmentTest
     String str,str1;
 
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
-    /*@BeforeClass
-    public void initializeProperties() throws IOException
-    {
-        properties = new Properties();
-        properties.load(new FileInputStream("src/main/resources/data.properties"));
-    }*/
     @Test
     public void fileUploadTest() throws IOException
     {
