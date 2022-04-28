@@ -7,7 +7,6 @@ import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,18 +14,14 @@ import java.util.List;
 public class postSignupTest {
     Response response;
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
-    String name;
-    String username;
-    String email;
-    String password;
-    String role;
+    String name,username,email,password,role;
     //String skills;
     @Test(priority = 1)
     public void signupHr() throws IOException {
         name=readDataFromExcel.sendData(2,1,0);
         username=readDataFromExcel.sendData(2, 1, 1);
         email=readDataFromExcel.sendData(2,1,2);
-        password=readDataFromExcel.sendData(2, 1, 3).replace("\"","");
+        password=readDataFromExcel.sendData(2, 1, 3);
         role=readDataFromExcel.sendData(2,1,4);
         JSONObject object = new JSONObject();
         object.put("name",name);
@@ -50,6 +45,9 @@ public class postSignupTest {
             Assert.assertEquals(response.getStatusCode(),406);
         }
     }
+
+
+
     @Test(priority = 2)
     public void check_name(){
         JSONObject object = new JSONObject();
@@ -66,6 +64,7 @@ public class postSignupTest {
         {
             System.out.println("bad request body");
         }
+
 
     }
     @Test(priority = 3)
@@ -95,7 +94,6 @@ public class postSignupTest {
             Assert.assertEquals(name, js.get("name"));
             Assert.assertEquals(username, js.get("username"));
             Assert.assertEquals(role, js.get("role"));
-
         }
         catch (AssertionError e){
             Assert.assertEquals("Username already exists",js.get("error"));
@@ -103,6 +101,6 @@ public class postSignupTest {
         }
     }
 
-
-
 }
+
+
