@@ -3,20 +3,29 @@ package Tests;
 import Requests.getScore;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.io.File;
-
-import static io.restassured.RestAssured.given;
 
 public class getAllSubjectExpertTest
 {
-    @Test
+    Response response;
+    JSONArray arr;
+    @Test(priority = 1)
     public void getAllExpert(){
         String end = "resume/getSubExperts";
-        Response response = getScore.login(end);
+        response = getScore.login(end);
         JsonPath jspath = response.jsonPath();
         jspath.prettyPrint();
+        arr = new JSONArray(response.asString());
     }
-    //
+    @Test(priority = 2)
+    public void assertUser()
+    {
+        JSONObject data1 = arr.getJSONObject(0);
+        Assert.assertEquals(data1.get("name"),"Parth");
+        JSONObject data2 = arr.getJSONObject(1);
+        Assert.assertEquals(data2.get("name"),"Vidushi Singh");
+    }
 }
