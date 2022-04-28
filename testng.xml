@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="Utilities.ListenerForExtentReport"/>
+    </listeners>
+    <test name="C:/Users/yashmittal2/Desktop/Automatic-Resume-Filter-API/pom.xml">
+        <classes>
+            <class name="Tests.postSignupTest"/>
+            <class name="Tests.postLoginTest"/>
+            <class name="Tests.postCreateRecruitmentTest"/>
+            <class name="Tests.GetRecruitmentAssignToSubjectExpertTest"/>
+            <class name="Tests.PostAddQuizTest"/>
+            <class name="Tests.PostSendQuizToCandidatesTest"/>
+            <class name="Tests.getScoreTest"/>
+            <class name="Tests.GetCandidatesList"/>
+            <class name="Tests.GetAllRecruitmentsTest"/>
+            <class name="Tests.getAllSubjectExpertTest"/>
+            <class name="Tests.getAllUsersTest"/>
+            <class name="Tests.getCheckQuizExists"/>
+            <class name="Tests.GetUnderProcessRecruitmentsTest"/>
+            <class name="Tests.GetCompletedRecruitmentsTest"/>
+        </classes>
+    </test>
+</suite>
