@@ -31,6 +31,7 @@ public class getCheckQuizExists {
         Assert.assertEquals(element.get("questions"),questions);
         Assert.assertEquals(response.getStatusCode(),200);
     }
+
     @Test(priority = 2)
     public void checkstatus(){
         String endpoint = "resume/checkQuiz";
