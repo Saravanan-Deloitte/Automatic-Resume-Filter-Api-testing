@@ -15,18 +15,14 @@ import java.util.List;
 public class postSignupTest {
     Response response;
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
-    String name;
-    String username;
-    String email;
-    String password;
-    String role;
+    String name,username,email,password,role;
     //String skills;
     @Test(priority = 1)
     public void signupHr() throws IOException {
         name=readDataFromExcel.sendData(2,1,0);
         username=readDataFromExcel.sendData(2, 1, 1);
         email=readDataFromExcel.sendData(2,1,2);
-        password=readDataFromExcel.sendData(2, 1, 3).replace("\"","");
+        password=readDataFromExcel.sendData(2, 1, 3);
         role=readDataFromExcel.sendData(2,1,4);
         JSONObject object = new JSONObject();
         object.put("name",name);

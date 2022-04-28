@@ -16,7 +16,7 @@ public class postLogin {
                         .when()
                         .body(login)
                         .post(endpoint)
-                        .then()
+                        .then().log().body()
                         .extract()
                         .response();
         return response;
