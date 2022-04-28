@@ -22,4 +22,19 @@ public class postLogin {
                         .response();
         return response;
     }
+    public static Response postParam(String login, String endpoint,String id,int param){
+
+        Response response =
+                given()
+                        .baseUri(url)
+                        .contentType(ContentType.JSON)
+                        .queryParam(id,param)
+                        .when()
+                        .body(login)
+                        .post(endpoint)
+                        .then().log().body()
+                        .extract()
+                        .response();
+        return response;
+    }
 }
