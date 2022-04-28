@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import Requests.postNewRecruitment;
 
 import java.io.IOException;
+
 public class postCreateRecruitmentTest
 {
     Response response;
@@ -21,7 +22,7 @@ public class postCreateRecruitmentTest
         String Start_Date = readDataFromExcel.sendData(3, 3, 0);
         String End_Date = readDataFromExcel.sendData(3, 4, 0);
         JsonPath jspath = response.jsonPath();
-//        jspath.prettyPrint();
+
         Assert.assertEquals(response.statusCode(),201);
         Assert.assertEquals(Recruitment_name,jspath.getString("name"));
         Assert.assertEquals(Category,jspath.getString("category"));
