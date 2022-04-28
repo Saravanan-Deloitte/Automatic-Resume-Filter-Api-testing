@@ -9,19 +9,36 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class getAllUsersTest {
+    Response response;
+    JSONArray arr;
+    JSONObject ele;
     @Test
-    public void checkScore(){
+    public void AllUsers(){
         String end = "resume/signup";
         Response response = getScore.login(end);
-        JsonPath jspath = response.jsonPath();
-//        jspath.prettyPrint();
-        JSONArray arr = new JSONArray(response.asString());
-        JSONObject ele = arr.getJSONObject(1);
+        arr = new JSONArray(response.asString());
+        ele = arr.getJSONObject(1);
+
+    }
+    @Test
+    public void checkName()
+    {
         Assert.assertEquals(ele.get("name"),"Parth");
+
+    }
+    @Test
+    public void checkRole()
+    {
         Assert.assertEquals(ele.get("role"),"Subject Expert");
+    }
+    @Test
+    public void checkEmail()
+    {
         Assert.assertEquals(ele.get("email"),"parth@gmail.cpom");
+    }
+    @Test
+    public void checkUsername()
+    {
         Assert.assertEquals(ele.get("username"),"parth123");
-
-
     }
 }

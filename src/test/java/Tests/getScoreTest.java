@@ -14,5 +14,6 @@ public class getScoreTest {
         JsonPath jspath = response.jsonPath();
         jspath.prettyPrint();
         Assert.assertEquals("Upload result file to update the score",jspath.getString("message"));
+        Assert.assertEquals(response.statusCode(),200);
     }
 }

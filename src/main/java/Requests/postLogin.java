@@ -21,7 +21,6 @@ public class postLogin {
                         .response();
         return response;
     }
-
     public static Response postParam(String login, String endpoint,String id,int param){
 
         Response response =
