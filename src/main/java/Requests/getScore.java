@@ -19,7 +19,6 @@ public class getScore {
                 .then()
                     .extract()
                     .response();
-
         return response;
     }
 
