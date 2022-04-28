@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class SendQuizToCandidatesTest {
+public class PostSendQuizToCandidatesTest {
     Response response;
     ReadDataFromExcel excel =new ReadDataFromExcel();
     @Test(priority = 1)
