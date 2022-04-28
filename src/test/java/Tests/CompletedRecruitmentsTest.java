@@ -22,30 +22,29 @@ public class CompletedRecruitmentsTest {
         response = getScore.login(end);
         Assert.assertEquals(response.statusCode(),200);
     }
+    @Test(priority = 1)
 
-    @Test (priority = 1)
-
-    public void InvalidHrID(){
-        String end = "resume/completedRecruitments?hr_id=@12";
-        response = getScore.login(end);
-        Assert.assertEquals(response.statusCode(),500);
-    }
-
-    @Test(priority = 2)
-
-    public void assertResponseData() throws IOException {
+    public void ExcelData() throws IOException {
         String name = readDataFromExcel.sendData(5, 1, 1);
         String category = readDataFromExcel.sendData(5, 1, 2);
-       // String startDate = readDataFromExcel.sendData(5, 1, 3).replace("\"","");
-        //String endDate = readDataFromExcel.sendData(5, 1, 4).replace("\"","");
+        String startDate = readDataFromExcel.sendData(5, 1, 3);
+        String endDate = readDataFromExcel.sendData(5, 1, 4);
 
         JSONArray arr = new JSONArray(response.asString());
         JSONObject obj = arr.getJSONObject(0);
         Assert.assertEquals (obj.getInt("id"),146);
         Assert.assertEquals(obj.get("name"), name);
         Assert.assertEquals(obj.get("category"), category);
-        //Assert.assertEquals(obj.get("start_date"), startDate);
-        //Assert.assertEquals(obj.get("start_date"), endDate);
+        Assert.assertEquals(obj.get("start_date"), startDate);
+        Assert.assertEquals(obj.get("end_date"), endDate);
+    }
+
+    @Test (priority = 2)
+
+    public void InvalidHrID(){
+        String end = "resume/completedRecruitments?hr_id=@12";
+        response = getScore.login(end);
+        Assert.assertEquals(response.statusCode(),500);
     }
 
 }
