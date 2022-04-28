@@ -18,7 +18,6 @@ public class postLogin {
                         .body(login)
                         .post(endpoint)
                         .then()
-                        .statusCode(202)
                         .extract()
                         .response();
         return response;
