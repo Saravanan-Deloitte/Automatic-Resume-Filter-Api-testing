@@ -22,4 +22,19 @@ public class getScore {
 
         return response;
     }
+
+    public static Response getParam(String endpoint,String id,int param){
+
+        Response response =
+                given()
+                        .baseUri(url)
+                        .contentType(ContentType.JSON)
+                        .queryParam(id,param)
+                        .when()
+                        .get(endpoint)
+                        .then().log().body()
+                        .extract()
+                        .response();
+        return response;
+    }
 }
