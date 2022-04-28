@@ -3,6 +3,7 @@ package Tests;
 import Requests.getScore;
 import Utilities.ReadDataFromExcel;
 import io.restassured.response.Response;
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.Assert;
@@ -11,6 +12,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class GetRecruitmentAssignToSubjectExpertTest {
+    Logger logger = Logger.getLogger(GetCompletedRecruitmentsTest.class);
 
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
     Response response;
@@ -20,6 +22,7 @@ public class GetRecruitmentAssignToSubjectExpertTest {
         String end = "resume/addQuiz?exp_id=7";
         response = getScore.login(end);
         Assert.assertEquals(response.statusCode(),200);
+        logger.info("Assigning Recruitment to Subject Expert");
     }
     @Test(priority = 1)
 
@@ -36,6 +39,7 @@ public class GetRecruitmentAssignToSubjectExpertTest {
         Assert.assertEquals(obj.get("category"), category);
         Assert.assertEquals(obj.get("start_date"), startDate);
         Assert.assertEquals(obj.get("end_date"), endDate);
+        logger.info("Asserting Data");
     }
 
     @Test (priority = 1)

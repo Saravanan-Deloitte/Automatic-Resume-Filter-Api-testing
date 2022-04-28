@@ -3,12 +3,15 @@ import Requests.getScore;
 import Utilities.ReadDataFromExcel;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
 public class getCheckQuizExists {
+    Logger logger = Logger.getLogger(getCheckQuizExists.class);
+
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
     Response response;
     @Test(priority = 1)
@@ -27,6 +30,8 @@ public class getCheckQuizExists {
         Assert.assertEquals(element.get("end_date"),endDate);
         Assert.assertEquals(element.get("questions"),questions);
         Assert.assertEquals(response.getStatusCode(),200);
+        logger.info("Check Details of Quiz and Assert them");
+
     }
 
     @Test(priority = 2)
@@ -38,5 +43,6 @@ public class getCheckQuizExists {
         String str=response.asString();
         Assert.assertEquals(response.getStatusCode(),200);
         Assert.assertEquals(str,"[]");
+        logger.info("Check Status Code");
     }
 }

@@ -5,11 +5,16 @@ import Utilities.ReadDataFromExcel;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
+
 public class postLoginTest {
+
+
+    Logger logger = Logger.getLogger(postLoginTest.class);
     Response response;
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
     JSONObject object;
@@ -18,6 +23,8 @@ public class postLoginTest {
 
 
     public postLoginTest() throws IOException {
+        logger.info("Doing Login Process");
+
 
         object = new JSONObject();
         String str = object.toString();
@@ -30,6 +37,7 @@ public class postLoginTest {
         String str = object.toString();
         response = postLogin.login(str,"resume/login");
         Assert.assertEquals(response.statusCode(),500);
+        logger.info("************ Negative Test Cases ************");
     }
 
     @Test(priority = 2)
@@ -40,12 +48,14 @@ public class postLoginTest {
         String str = object.toString();
         response = postLogin.login(str,"resume/login");
         Assert.assertEquals(response.statusCode(),202);
+        logger.info("Actual Login Done");
     }
     @Test(priority = 3)
     public void check_name(){
         JsonPath js = response.jsonPath();
         Assert.assertEquals("Arpit Dadhich", js.get("name"));
         Assert.assertEquals(response.statusCode(),202);
+        logger.info("Asserted Name");
     }
 
 
@@ -54,6 +64,7 @@ public class postLoginTest {
         JsonPath js = response.jsonPath();
         Assert.assertEquals("arp", js.get("username"));
         Assert.assertEquals(response.statusCode(),202);
+        logger.info("Asserted username");
     }
 
     @Test(priority = 5)
@@ -61,6 +72,7 @@ public class postLoginTest {
         JsonPath js = response.jsonPath();
         Assert.assertEquals("HR", js.get("role"));
         Assert.assertEquals(response.statusCode(),202);
+        logger.info("Asserted Role");
     }
 
 }

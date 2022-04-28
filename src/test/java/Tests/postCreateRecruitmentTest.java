@@ -2,6 +2,7 @@ package Tests;
 import Utilities.ReadDataFromExcel;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import Requests.postNewRecruitment;
@@ -10,6 +11,8 @@ import java.io.IOException;
 
 public class postCreateRecruitmentTest
 {
+    Logger logger = Logger.getLogger(postCreateRecruitmentTest.class);
+
     Response response;
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
     @Test
@@ -28,6 +31,7 @@ public class postCreateRecruitmentTest
         Assert.assertEquals(Category,jspath.getString("category"));
         Assert.assertEquals(Start_Date,jspath.getString("start_date"));
         Assert.assertEquals(End_Date,jspath.getString("end_date"));
+        logger.info("Asserted data og Recruitment Test");
     }
 
 }

@@ -4,6 +4,7 @@ import Requests.postLogin;
 import Utilities.ReadDataFromExcel;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.Assert;
@@ -13,6 +14,8 @@ import java.io.IOException;
 
 
 public class PostAddQuizTest {
+    Logger logger = Logger.getLogger(PostAddQuizTest.class);
+
     ReadDataFromExcel readDataFromExcel=new ReadDataFromExcel();
     Response response;
     String str;
@@ -34,17 +37,20 @@ public class PostAddQuizTest {
         object.put("questions",questions);
         str = object.toString();
         response = postLogin.postParam(str,"resume/addQuiz","exp_id",294);
+        logger.info("Giving data input to set a quiz");
     }
 
     @Test(priority = 2)
     public void assertStatusCode(){
         Assert.assertEquals(response.statusCode(),201);
+        logger.info("Checked Status Code");
     }
 
     @Test(priority = 3)
     public void assertResponse(){
         String res = String.valueOf(response.body());
         Assert.assertEquals(!(res.isEmpty()),true);
+        logger.info("Asserted Response");
     }
 
     @Test(priority = 4)
@@ -56,6 +62,7 @@ public class PostAddQuizTest {
         Assert.assertEquals(path.get("questions"), questions);
         Assert.assertEquals(path.getInt("recruitment"), 239);
         Assert.assertEquals(path.getInt("expert_id"),294);
+        logger.info("Asserted data");
     }
 
     @Test(priority = 5)
@@ -64,6 +71,7 @@ public class PostAddQuizTest {
         Assert.assertEquals(response.statusCode(),400);
         JSONObject ele = new JSONObject(response.asString());
         Assert.assertEquals(ele.getJSONArray("expert_id").toString(), "[\"Invalid pk \\\"0\\\" - object does not exist.\"]");
+        logger.info("******Negative Test case******");
     }
 
     @Test(priority = 6)
@@ -72,5 +80,7 @@ public class PostAddQuizTest {
         Assert.assertEquals(response.statusCode(),400);
         JSONObject ele = new JSONObject(response.asString());
         Assert.assertEquals(ele.getJSONArray("expert_id").toString(), "[\"Invalid pk \\\"-1\\\" - object does not exist.\"]");
+        logger.info("******Negative Test case******");
+
     }
 }
