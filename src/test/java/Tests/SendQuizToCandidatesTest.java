@@ -9,9 +9,12 @@ import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+<<<<<<< HEAD
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+=======
+>>>>>>> origin/main
 import java.io.IOException;
 
 public class SendQuizToCandidatesTest {

@@ -16,12 +16,11 @@ public class postLogin {
                         .when()
                         .body(login)
                         .post(endpoint)
-                        .then().log().body()
+                        .then()
                         .extract()
                         .response();
         return response;
     }
-
     public static Response postParam(String login, String endpoint,String id,int param){
 
         Response response =
