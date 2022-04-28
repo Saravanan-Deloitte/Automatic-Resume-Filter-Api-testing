@@ -5,6 +5,7 @@ import Utilities.ReadDataFromExcel;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,6 +13,8 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class PostSendQuizToCandidatesTest {
+    Logger logger = Logger.getLogger(PostSendQuizToCandidatesTest.class);
+
     Response response;
     ReadDataFromExcel excel =new ReadDataFromExcel();
     @Test(priority = 1)
@@ -26,5 +29,7 @@ public class PostSendQuizToCandidatesTest {
         JsonPath js = response.jsonPath();
         Assert.assertEquals("Quiz link Sent", js.get("message"));
         Assert.assertEquals(response.statusCode(),200);
+
+        logger.info("Sending Quiz to Eligible Candidates.");
     }
 }

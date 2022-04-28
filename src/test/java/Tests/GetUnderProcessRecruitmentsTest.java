@@ -3,12 +3,15 @@ package Tests;
 import Requests.getScore;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class GetUnderProcessRecruitmentsTest {
+    Logger logger = Logger.getLogger(GetUnderProcessRecruitmentsTest.class);
+
     @Test(priority = 1)
     public void checkStatus(){
         RestAssured.useRelaxedHTTPSValidation();
@@ -24,6 +27,7 @@ public class GetUnderProcessRecruitmentsTest {
         Assert.assertEquals(ele.get("username"),"vidushi");
         Assert.assertEquals(ele.get("email"),"vidu.s1999@gmail.com");
         Assert.assertEquals(ele.get("role"),"Subject Expert");
+        logger.info("Checked Status Code and Asserted data also");
     }
     @Test(priority = 2)
     public void checkNull(){
@@ -34,5 +38,6 @@ public class GetUnderProcessRecruitmentsTest {
         String str=response.asString();
         Assert.assertEquals(response.getStatusCode(),200);
         Assert.assertEquals(str,"[]");
+        logger.info("Checking Null Body");
     }
 }

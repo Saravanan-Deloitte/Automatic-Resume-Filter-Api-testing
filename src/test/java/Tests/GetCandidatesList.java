@@ -4,6 +4,7 @@ import Requests.getScore;
 import Utilities.ReadDataFromExcel;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.Assert;
@@ -12,6 +13,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class GetCandidatesList {
+    Logger logger = Logger.getLogger(GetCandidatesList.class);
     Response response;
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
 
@@ -20,11 +22,13 @@ public class GetCandidatesList {
         String end = "/resume/candidates?rec_id=18";
         response = getScore.login(end);
         Assert.assertEquals(response.statusCode(),200);
+        logger.info("Get all candidates list");
     }
 
     @Test(priority = 2)
     public void assertStatusCode(){
         Assert.assertEquals(response.statusCode(),200);
+        logger.info("Asserted Status Code");
     }
 
     @Test(priority = 3)
@@ -52,5 +56,7 @@ public class GetCandidatesList {
         Assert.assertEquals(obj.get("status"), status);
         Assert.assertEquals(obj.get("quizSent"), quizSent);
         Assert.assertEquals(obj.get("recruitment"), 18);
+
+        logger.info("Asserted Data of Candidates");
     }
 }

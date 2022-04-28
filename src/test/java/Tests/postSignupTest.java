@@ -4,6 +4,7 @@ import Requests.postLogin;
 import Utilities.ReadDataFromExcel;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,12 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class postSignupTest {
+    Logger logger = Logger.getLogger(postSignupTest.class);
+
     Response response;
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
     String name,username,email,password,role;
     //String skills;
     @Test(priority = 1)
     public void signupHr() throws IOException {
+        logger.info("*******************************************************");
+        logger.info("$$$$$$$$ API Testing of Automatic Resume Filter  $$$$$$$$");
+        logger.info("    Signin By HR      ");
         name=readDataFromExcel.sendData(2,1,0);
         username=readDataFromExcel.sendData(2, 1, 1);
         email=readDataFromExcel.sendData(2,1,2);
@@ -43,6 +49,7 @@ public class postSignupTest {
             //System.out.println("User already exist");
             Assert.assertEquals("Username already exists",js.get("error"));
             Assert.assertEquals(response.getStatusCode(),406);
+            logger.info(" USER ALREADY EXISTS !!!!");
         }
     }
 
@@ -57,14 +64,9 @@ public class postSignupTest {
         String str = object.toString();
         response = postLogin.login(str,"resume/signup");
         JsonPath js = response.jsonPath();
-        try{
-            Assert.assertEquals(response.getStatusCode(),201);
-        }
-        catch (AssertionError e)
-        {
-            System.out.println("bad request body");
-        }
+        Assert.assertEquals(response.getStatusCode(),500);
 
+        logger.error(" BAD REQUEST BODY !!!!");
 
     }
     @Test(priority = 3)
@@ -96,9 +98,12 @@ public class postSignupTest {
             Assert.assertEquals(role, js.get("role"));
         }
         catch (AssertionError e){
+            logger.info(" USER ALREADY EXISTS !!!!");
+
             Assert.assertEquals("Username already exists",js.get("error"));
             Assert.assertEquals(response.getStatusCode(),406);
         }
+        logger.info(" !!!!!!!! SUCCESSFULLY SIGNED IN !!!!!!!!!!");
     }
 
 }
