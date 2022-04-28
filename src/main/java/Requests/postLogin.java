@@ -2,7 +2,6 @@ package Requests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
 
 import static io.restassured.RestAssured.given;
 

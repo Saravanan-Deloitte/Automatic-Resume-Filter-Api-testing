@@ -11,13 +11,13 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class GetAllRecruitmentsTest {
+public class GetCandidatesList {
     Response response;
     ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
 
     @Test(priority = 1)
-    public void getRecruitments(){
-        String end = "/resume/getRecruitment";
+    public void candidatesList(){
+        String end = "/resume/candidates?rec_id=18";
         response = getScore.login(end);
         Assert.assertEquals(response.statusCode(),200);
     }
@@ -35,18 +35,22 @@ public class GetAllRecruitmentsTest {
 
     @Test(priority = 4)
     public void assertResponseData() throws IOException {
-        String name = readDataFromExcel.sendData(1, 2, 0);
-        String category = readDataFromExcel.sendData(1, 2, 1);
-        String startDate = readDataFromExcel.sendData(1, 2, 2).replace("\"","");
-        String endDate = readDataFromExcel.sendData(1, 2, 3).replace("\"","");
+        String name = readDataFromExcel.sendData(1, 3, 0);
+        String email = readDataFromExcel.sendData(1, 3, 1);
+        String phone = readDataFromExcel.sendData(1, 3, 2).replace("\"", "");
+        String eligibility = readDataFromExcel.sendData(1, 3, 3);
+        String status = readDataFromExcel.sendData(1, 3, 4);
+        String quizSent = readDataFromExcel.sendData(1, 3, 5);
 
         JSONArray arr = new JSONArray(response.asString());
         JSONObject obj = arr.getJSONObject(0);
-        Assert.assertEquals (obj.getInt("id"),1);
-        Assert.assertEquals(obj.get("name"), name);
-        Assert.assertEquals(obj.get("category"), category);
-        Assert.assertEquals(obj.get("start_date"), startDate);
-        Assert.assertEquals(obj.get("start_date"), endDate);
+        Assert.assertEquals(obj.getInt("id"), 41);
+        Assert.assertEquals(obj.get("candidate_name"), name);
+        Assert.assertEquals(obj.get("candidate_email"), email);
+        Assert.assertEquals(obj.get("candidate_phone"), phone);
+        Assert.assertEquals(obj.get("quizEligibility"), eligibility);
+        Assert.assertEquals(obj.get("status"), status);
+        Assert.assertEquals(obj.get("quizSent"), quizSent);
+        Assert.assertEquals(obj.get("recruitment"), 18);
     }
-
 }
