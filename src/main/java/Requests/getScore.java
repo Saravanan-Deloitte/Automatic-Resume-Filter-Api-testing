@@ -29,12 +29,13 @@ public class getScore {
                 given()
                         .baseUri(url)
                         .contentType(ContentType.JSON)
-                        .queryParam(id,param)
-                        .when()
+                        .queryParam(id,param).
+                        when()
                         .get(endpoint)
                         .then().log().body()
                         .extract()
                         .response();
+
         return response;
     }
 }
